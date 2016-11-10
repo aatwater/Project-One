@@ -1,0 +1,860 @@
+---
+title: "ADA project 1"
+author: "Amy Atwater"
+date: "November 5, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+
+### Data Replication Project: Paper
+### Diets of fossil primates from the Fayum Depression of Egypt: a quantitative analysis of molar shearing 
+### Authors: Kirk, Simons
+
+### year 2001
+
+### I ended up replicating the data and analyses from this paper instead of my original plan of Plavcan (2000) not because I didn't have access to the data, which I do have Plavcan's dissertation, but because the data was largely unfamilar and daunting. I went with a paper I am more familar with that had a more manageable dataset. ###
+
+### First analysis: Body mass estimation using the all primate, prosimian, and anthropoid least-squares regression equations presented in Conroy (1987)
+### Equations: 
+### All Primate ln(B) = 1.784 ln(A) + 2.54
+### Prosimian ln(B) = 1.614 ln(A) + 2.67
+### Anthropoid ln(B) = 1.570 ln(A) + 3.38
+
+### Replicating Table 3: Estimated Body Mass of fossil species basd on lower first molar area
+
+### Anchomomyms milleri, known: lower first molar area of 2.75 mm2
+anch_all = 1.784*log(2.75) +2.54 ### All primate regression (grams) ###
+exp(anch_all)
+upper = (1.784 + 0.33)*log(2.75) + (2.54 + .38)### Upper 95% confidence limit based on slope and intercept error from Conroy (1987)####
+exp(upper)
+lower = (1.784 - 0.33)*log(2.75) + (2.54 - 0.38) ### Lower 95% ###
+exp(lower)
+anch_prosim = 1.614*log(2.75) + 2.67 ### Prosimian regression (grams) ###
+exp(anch_prosim)
+upper = (1.614 + 0.22)*log(2.75) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(2.75) + (2.67 - 0.75)
+exp(lower)
+anch_anthro = 1.570*log(2.75) + 3.38  ### Anthropoid regression (g) ###
+exp(anch_anthro)
+upper= (1.570 +0.12)*log(2.75) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(2.75) + (3.38 - 0.73)
+exp(lower)
+
+### Anchomomys milleri is below Kay's Threshold (500 g) ###
+
+### Wadilemur elegans, known: m1 area = 3.32 mm2
+wad_all = 1.784*log(3.32) +2.54 ### All primate regression (grams) ###
+exp(wad_all)
+upper = (1.784 + 0.33)*log(3.32) + (2.54 + .38) ### Upper 95% confidence limit based on slope and intercept error from Conroy (1987)####
+exp(upper)
+lower = (1.784 - 0.33)*log(3.32) + (2.54 - 0.38) ### Lower 95% ###
+exp(lower)
+wad_prosim = 1.614*log(3.32) + 2.67 ### Prosimian regression (grams) ###
+exp(wad_prosim)
+
+upper = (1.614 + 0.22)*log(3.32) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(3.32) + (2.67 - 0.75)
+exp(lower)
+wad_anthro = 1.570*log(3.32) + 3.38  ### Anthropoid regression (g) ###
+exp(wad_anthro)
+upper= (1.570 +0.12)*log(3.32) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(3.32) + (3.38 - 0.73)
+exp(lower)
+
+### Wadilemur elegans is below Kay's Threshold (500 g) ###
+
+### Qatrania wingi, known: m1 area = 3.83 mm2
+Q_all = 1.784*log(3.83) +2.54 ### All primate regression (grams) ###
+exp(Q_all)
+upper = (1.784 + 0.33)*log(3.83) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(3.83) + (2.54 - 0.38) 
+exp(lower)
+Q_prosim = 1.614*log(3.83) + 2.67 ### Prosimian regression (grams) ###
+exp(Q_prosim)
+upper = (1.614 + 0.22)*log(3.83) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(3.83) + (2.67 - 0.75)
+exp(lower)
+Q_anthro = 1.570*log(3.83) + 3.38  ### Anthropoid regression (g) ###
+exp(Q_anthro)
+upper= (1.570 +0.12)*log(3.83) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(3.83) + (3.38 - 0.73)
+exp(lower)
+
+### Q. wingi is below Kay's Threshold (500 g) ###
+
+### Qatrania sp., known: m1 area = 4.77 mm2
+Qa_all = 1.784*log(4.77) +2.54 ### All primate regression (grams) ###
+exp(Qa_all)
+upper = (1.784 + 0.33)*log(4.77) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(4.77) + (2.54 - 0.38) 
+exp(lower)
+Qa_prosim = 1.614*log(4.77) + 2.67 ### Prosimian regression (grams) ###
+exp(Qa_prosim)
+upper = (1.614 + 0.22)*log(4.77) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(4.77) + (2.67 - 0.75)
+exp(lower)
+Qa_anthro = 1.570*log(4.77) + 3.38  ### Anthropoid regression (g) ###
+exp(Qa_anthro)
+upper= (1.570 +0.12)*log(4.77) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(4.77) + (3.38 - 0.73)
+exp(lower)
+### Q. sp. is below Kay's Threshold (500 g) ###
+
+### Afrotarsius chatrathi, known: m1 area = 4.90 mm2
+afr_all = 1.784*log(4.9) +2.54 ### All primate regression (grams) ###
+exp(afr_all)
+upper = (1.784 + 0.33)*log(4.9) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(4.9) + (2.54 - 0.38) 
+exp(lower)
+afr_prosim = 1.614*log(4.9) + 2.67 ### Prosimian regression (grams) ###
+exp(afr_prosim)
+upper = (1.614 + 0.22)*log(4.9) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(4.9) + (2.67 - 0.75)
+exp(lower)
+afr_anthro = 1.570*log(4.9) + 3.38  ### Anthropoid regression (g) ###
+exp(afr_anthro)
+upper= (1.570 +0.12)*log(4.9) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(4.9) + (3.38 - 0.73)
+exp(lower)
+
+### A. chatrathi is below Kay's Threshold (500 g) ###
+
+### Qatrania fleaglei, known: m1 area = 6.16 mm2
+qat_all = 1.784*log(6.16) +2.54 ### All primate regression (grams) ###
+exp(qat_all)
+upper = (1.784 + 0.33)*log(6.16) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(6.16) + (2.54 - 0.38) 
+exp(lower)
+qat_prosim = 1.614*log(6.16) + 2.67 ### Prosimian regression (grams) ###
+exp(qat_prosim)
+upper = (1.614 + 0.22)*log(6.16) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(6.16) + (2.67 - 0.75)
+exp(lower)
+qat_anthro = 1.570*log(6.16) + 3.38  ### Anthropoid regression (g) ###
+exp(qat_anthro)
+upper= (1.570 +0.12)*log(6.16) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(6.16) + (3.38 - 0.73)
+exp(lower)
+
+### Q. fleaglei is within the confidence intervals for Kay's Threshold (500 g) and is therefore unknown ###
+
+### Arsinoea kallimos, known: m1 area = 6.48 mm2
+ars_all = 1.784*log(6.48) +2.54 ### All primate regression (grams) ###
+exp(ars_all)
+upper = (1.784 + 0.33)*log(6.48) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(6.48) + (2.54 - 0.38) 
+exp(lower)
+ars_prosim = 1.614*log(6.48) + 2.67 ### Prosimian regression (grams) ###
+exp(ars_prosim)
+upper = (1.614 + 0.22)*log(6.48) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(6.48) + (2.67 - 0.75)
+exp(lower)
+ars_anthro = 1.570*log(6.48) + 3.38  ### Anthropoid regression (g) ###
+exp(ars_anthro)
+upper= (1.570 +0.12)*log(6.48) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(6.48) + (3.38 - 0.73)
+exp(lower)
+
+### A. kallimos is within the confidence intervals for Kay's Threshold (500 g) and is therefore unknown ###
+
+### Proteopithecus sylviae, known: m1 area = 8.21 mm2
+pro_all = 1.784*log(8.21) +2.54 ### All primate regression (grams) ###
+exp(pro_all)
+upper = (1.784 + 0.33)*log(8.21) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(8.21) + (2.54 - 0.38) 
+exp(lower)
+pro_prosim = 1.614*log(8.21) + 2.67 ### Prosimian regression (grams) ###
+exp(pro_prosim)
+upper = (1.614 + 0.22)*log(8.21) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(8.21) + (2.67 - 0.75)
+exp(lower)
+pro_anthro = 1.570*log(8.21) + 3.38  ### Anthropoid regression (g) ###
+exp(pro_anthro)
+upper= (1.570 +0.12)*log(8.21) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(8.21) + (3.38 - 0.73)
+exp(lower)
+
+### P. sylviae is above Kay's Threshold (500 g) ###
+
+### Serapia eocanea, known: m1 area = 9.63 mm2
+ser_all = 1.784*log(9.63) +2.54 ### All primate regression (grams) ###
+exp(ser_all)
+upper = (1.784 + 0.33)*log(9.63) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(9.63) + (2.54 - 0.38) 
+exp(lower)
+ser_prosim = 1.614*log(9.63) + 2.67 ### Prosimian regression (grams) ###
+exp(ser_prosim)
+upper = (1.614 + 0.22)*log(9.63) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(9.63) + (2.67 - 0.75)
+exp(lower)
+ser_anthro = 1.570*log(9.63) + 3.38  ### Anthropoid regression (g) ###
+exp(ser_anthro)
+upper= (1.570 +0.12)*log(9.63) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(9.63) + (3.38 - 0.73)
+exp(lower)
+
+### S. eocanea is above Kay's Threshold (500 g) ###
+
+### Catopithecus browni, known: m1 area = 9.98 mm2
+cat_all = 1.784*log(9.98) +2.54 ### All primate regression (grams) ###
+exp(cat_all)
+upper = (1.784 + 0.33)*log(9.98) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(9.98) + (2.54 - 0.38) 
+exp(lower)
+cat_prosim = 1.614*log(9.98) + 2.67 ### Prosimian regression (grams) ###
+exp(cat_prosim)
+upper = (1.614 + 0.22)*log(9.98) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(9.98) + (2.67 - 0.75)
+exp(lower)
+cat_anthro = 1.570*log(9.98) + 3.38  ### Anthropoid regression (g) ###
+exp(cat_anthro)
+upper= (1.570 +0.12)*log(9.98) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(9.98) + (3.38 - 0.73)
+exp(lower)
+
+### C. browni is above Kay's Threshold (500 g) ###
+
+### Plesiopithecus teras, known: m1 area = 10.35 mm2
+ple_all = 1.784*log(10.35) +2.54 ### All primate regression (grams) ###
+exp(ple_all)
+upper = (1.784 + 0.33)*log(10.35) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(10.35) + (2.54 - 0.38) 
+exp(lower)
+ple_prosim = 1.614*log(10.35) + 2.67 ### Prosimian regression (grams) ###
+exp(ple_prosim)
+upper = (1.614 + 0.22)*log(10.35) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(10.35) + (2.67 - 0.75)
+exp(lower)
+ple_anthro = 1.570*log(10.35) + 3.38  ### Anthropoid regression (g) ###
+exp(ple_anthro)
+upper= (1.570 +0.12)*log(10.35) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(10.35) + (3.38 - 0.73)
+exp(lower)
+
+### P. teras is above Kay's Threshold (500 g) ###
+
+### Oligopithecus savagei, known: m1 area = 12.77 mm2
+oli_all = 1.784*log(12.77) +2.54 ### All primate regression (grams) ###
+exp(oli_all)
+upper = (1.784 + 0.33)*log(12.77) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(12.77) + (2.54 - 0.38) 
+exp(lower)
+oli_prosim = 1.614*log(12.77) + 2.67 ### Prosimian regression (grams) ###
+exp(oli_prosim)
+upper = (1.614 + 0.22)*log(12.77) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(12.77) + (2.67 - 0.75)
+exp(lower)
+oli_anthro = 1.570*log(12.77) + 3.38  ### Anthropoid regression (g) ###
+exp(oli_anthro)
+upper= (1.570 +0.12)*log(12.77) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(12.77) + (3.38 - 0.73)
+exp(lower)
+
+### O. savagei is above Kay's Threshold (500 g) ###
+
+### Aframonius diedes, known: m1 area = 13.26 mm2
+afr_all = 1.784*log(13.26) +2.54 ### All primate regression (grams) ###
+exp(afr_all)
+upper = (1.784 + 0.33)*log(13.26) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(13.26) + (2.54 - 0.38) 
+exp(lower)
+afr_prosim = 1.614*log(13.26) + 2.67 ### Prosimian regression (grams) ###
+exp(afr_prosim)
+upper = (1.614 + 0.22)*log(13.26) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(13.26) + (2.67 - 0.75)
+exp(lower)
+afr_anthro = 1.570*log(13.26) + 3.38  ### Anthropoid regression (g) ###
+exp(afr_anthro)
+upper= (1.570 +0.12)*log(13.26) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(13.26) + (3.38 - 0.73)
+exp(lower)
+
+### A. diedes is above Kay's Threshold (500 g) ###
+
+### SDNHM Taxon A, known: m1 area = 3.7 mm2
+A_all = 1.784*log(3.7) +2.54 ### All primate regression (grams) ###
+exp(A_all)
+upper = (1.784 + 0.33)*log(3.7) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(3.7) + (2.54 - 0.38) 
+exp(lower)
+A_prosim = 1.614*log(3.7) + 2.67 ### Prosimian regression (grams) ###
+exp(A_prosim)
+upper = (1.614 + 0.22)*log(3.7) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(3.7) + (2.67 - 0.75)
+exp(lower)
+A_anthro = 1.570*log(3.7) + 3.38  ### Anthropoid regression (g) ###
+exp(A_anthro)
+upper= (1.570 +0.12)*log(3.7) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(3.7) + (3.38 - 0.73)
+exp(lower)
+
+### Taxon A is below Kay's Threshold (500 g) ###
+
+### SDNHM Taxon B, known m1 area = 6.4 mm2
+B_all = 1.784*log(6.4) +2.54 ### All primate regression (grams) ###
+exp(B_all)
+upper = (1.784 + 0.33)*log(6.4) + (2.54 + .38)
+exp(upper)
+lower = (1.784 - 0.33)*log(6.4) + (2.54 - 0.38) 
+exp(lower)
+B_prosim = 1.614*log(6.4) + 2.67 ### Prosimian regression (grams) ###
+exp(B_prosim)
+upper = (1.614 + 0.22)*log(6.4) + (2.67 + 0.75)
+exp(upper)
+lower = (1.614 - 0.22)*log(6.4) + (2.67 - 0.75)
+exp(lower)
+B_anthro = 1.570*log(6.4) + 3.38  ### Anthropoid regression (g) ###
+exp(B_anthro)
+upper= (1.570 +0.12)*log(6.4) + (3.38 +0.73)
+exp(upper)
+lower= (1.570 - 0.12)*log(6.4) + (3.38 - 0.73)
+exp(lower)
+
+### Taxon B is likely below Kay's Threshold (500 g) ###
+
+### PART TWO ###
+
+### Recreating Figure 2: The Regressions used to calculate shearing quotients ###
+
+### Extant Platyrrhines
+
+file.choose()
+plat <- read.csv("/Users/amyatwater/Desktop/plat2.csv", sep=",", header = TRUE) 
+attach(plat)
+
+  m1 Length	ln m1 Length	MTS	ln MTS	SQ
+Seeds/Fruit	3.97	1.378766095	5.9	1.774952351	-14.23
+Seeds/Fruit	3.64	1.291983682	5.58	1.719188776	-12.3
+Fruit/Insects	2.52	0.924258902	4.03	1.393766376	-11.85
+Seeds/Fruit	4.79	1.566530411	7.71	2.042518188	-5.33
+Gum/Fruit	1.78	0.576613364	3.26	1.181727195	-2.53
+Seeds/Fruit	4	1.386294361	6.78	1.913977102	-2.11
+Fruit	3.18	1.156881197	5.55	1.713797928	-1.51
+Gum/Fruit	2.22	0.797507196	4.08	1.406096988	0.01
+Fruit	3.09	1.128171091	5.64	1.729884066	2.34
+Fruit	5.26	1.660131027	9.31	2.231089091	5.09
+Fruit/Insects	2.87	1.05431203	5.54	1.711994501	7.81
+Fruit/Leaves	5.47	1.699278616	10.12	2.314513664	10.28
+Fruit/Leaves	3.06	1.118414916	6.16	1.818076778	13.16
+Fruit/Insects	2.6	0.955511445	5.48	1.701105101	16.54
+
+install.packages()
+p <- ggplot(data=plat, aes(x=log(m1_Length), y=log(MTS), color = factor(Diet))) 
+p <- p + xlab("log(Lower First Molar Length)") + ylab("log(mean total shearing (MTS)") 
+p <- p + geom_point() 
+p <- p + theme(legend.position="top", legend.title=element_blank()) 
+p <- p + geom_smooth(method=lm, se=FALSE)
+p
+
+### BUT to get the necessary regression line for the entire group and not just the dietary groups... ###
+
+
+#### LET'S SEE IF I CAN DO IT WITHOUT RCMDR ###
+monk <- lm(MTS ~ m1_Length , data = plat)
+
+monk
+
+logmonk <-lm(log(MTS) ~ log(m1_Length) , data = plat)
+
+logmonk
+
+plotmonk <- ggplot(plat, aes(x=m1_Length, y=MTS))+geom_point(shape=1)+geom_smooth(method = lm, se=FALSE) ### scatterplot with regression line
+
+plotmonk
+
+### let's use a function to get an equation for that linear regression info ###
+
+lm_equ =function(monk){ 
+
+  l <- list(a = format(coef(monk)[1], digits = 2),
+      b = format(abs(coef(monk)[2]), digits = 2),
+      r2 = format(summary(monk)$r.squared, digits = 3));
+
+  if (coef(monk)[2] >= 0)  {
+    eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,l)
+  } else {
+    eq <- substitute(italic(y) == a - b %.% italic(x)*","~~italic(r)^2~"="~r2,l)    
+  }
+
+  as.character(as.expression(eq));                 
+}
+plotplz <- plotmonk + geom_text(aes(x = 5.5, y = 10, label = lm_eqn(lm(MTS ~ m1_Length))), parse = TRUE) ### Display LS regression equation for non-ln-transformed data ###
+
+plotplz
+
+### Log-transformed Regression ###
+logplotplz <- ggplot(plat, aes(x=ln_m1_Length, y=ln_MTS))+geom_point(shape=1)+geom_smooth(method = lm, se=FALSE) ### make another scatterplot using ln-transformed values ###
+logplotplz
+
+
+logplotplzeq<-logplotplz+geom_text(aes(x = 2, y = 2.5, label = lm_eqn(lm(ln_MTS ~ ln_m1_Length))), parse = TRUE) ### get that LS regression equation on there ###
+logplotplzeq
+
+##### Rcmdr work below from previous attempts ####
+
+
+library(Rcmdr)
+Call:
+lm(formula = ln.MTS ~ ln.m1.Length, data = plat)
+
+Residuals:
+      Min        1Q    Median        3Q 
+-0.153308 -0.047295 -0.007561  0.068921 
+      Max 
+ 0.153075 
+
+Coefficients:
+             Estimate Std. Error t value
+(Intercept)   0.68965    0.10379   6.644
+ln.m1.Length  0.89835    0.08415  10.675
+             Pr(>|t|)    
+(Intercept)  2.38e-05 ***
+ln.m1.Length 1.76e-07 ***
+---
+Signif. codes:  
+  0 '***' 0.001 '**' 0.01 '*' 0.05 '.'
+  0.1 ' ' 1
+
+Residual standard error: 0.09925 on 12 degrees of freedom
+Multiple R-squared:  0.9047,	Adjusted R-squared:  0.8968 
+F-statistic:   114 on 1 and 12 DF,  p-value: 1.76e-07
+
+### Cool, now on to the prosimians ###
+
+file.choose()
+pros <- read.csv("/Users/amyatwater/Desktop/prosim.csv", sep=",", header = TRUE) 
+attach(pros) ### load prosimian data from Kirk & Simons (2000) ###
+
+f <- ggplot(data=pros, aes(x=log(m2_Length), y=log(MTS), color = factor(Diet))) ### make a scatterplot with the color and legend variables based on dietary groups ###
+f <- f + xlab("log(Lower Second Molar Length)") + ylab("log(mean total shearing (MTS)") # add labels
+f <- f + geom_point() 
+f <- f + theme(legend.position="top", legend.title=element_blank()) 
+f <- f + geom_smooth(method=lm, se=FALSE) #add legend and regression line ###
+f
+
+#### Overall Regression Line ###
+
+poo <- lm(MTS ~ m2_Length , data = pros) ### define regression data
+
+poo
+
+logpoo <-lm(log(MTS) ~ log(m2_Length) , data = pros)
+
+logpoo
+
+plot <- ggplot(pros, aes(x=m2_Length, y=MTS))+geom_point(shape=1)+geom_smooth(method = lm, se=FALSE) ### scatterplot with regression line
+
+plot
+
+### let's use a function to get an equation for that linear regression info ###
+
+lm_equ =function(poo){ 
+
+  l <- list(a = format(coef(poo)[1], digits = 2),
+      b = format(abs(coef(poo)[2]), digits = 2),
+      r2 = format(summary(poo)$r.squared, digits = 3));
+
+  if (coef(poo)[2] >= 0)  {
+    eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,l)
+  } else {
+    eq <- substitute(italic(y) == a - b %.% italic(x)*","~~italic(r)^2~"="~r2,l)    
+  }
+
+  as.character(as.expression(eq));                 
+}
+plotpoo <- plot + geom_text(aes(x = 5, y = 5, label = lm_eqn(lm(MTS ~ m2_Length))), parse = TRUE) ### Display LS regression equation for non-ln-transformed data ###
+
+plotpoo
+
+### Log-transformed Regression ###
+logplot <- ggplot(pros, aes(x=ln_m2_Length, y=ln_MTS))+geom_point(shape=1)+geom_smooth(method = lm, se=FALSE) ### make another scatterplot using ln-transformed values ###
+logplot
+
+logploteq<-logplot+geom_text(aes(x = 2, y = 2.5, label = lm_eqn(lm(ln_MTS ~ ln_m2_Length))), parse = TRUE) ### get that LS regression equation on there ###
+logploteq
+
+### Final Tables: Calculating Shearing Quotients (SQ) in extant and fossil prosimians and platyrrhines ###
+
+### Table 4: Prosimians
+
+### So, this is where I ran into some of my only discrepancies in results between my work and the publication##
+
+### In the paper, Shearing Quotient (SQ) is defined by: SQ = ((observed MTS - expected MTS)/expected MTS)*100
+
+### Expected MTS (mean total shearing) values are supposedly calculated based on the regression equations presented in Figure 2, for prosimians and platyrrhines, respectively. 
+
+### So, for prosimians the equations is listed as expected MTS = (m2L*0.99)+0.683 but if you use that equation to replicate the SQ results for Tables 4 & 5, you get the incorrect answer. 
+
+### The correct answer can be reached by using the LS regression equation from the non-ln-transformed data to calculated expected MTS. The authors pulished one equation, but used a different one for the results. I'm not sure why. Maybe it's expected to report everything in ln-transformed format, even if not accurate? ###
+
+### EXAMPLE: Using published equation for Cheirogaleus major (m2L = 3.43)
+eMTS = (3.43*.99)+0.683
+eMTS ### estimated
+((3.43-eMTS)/eMTS)*100 ### returns result of -15.9, published result is -22.12 ###
+
+### non-log regression line from before:
+y = 1.9689x - 0.00015
+
+exp <- 1.9689*(3.43) - 0.00015
+exp ### estimated MTS 
+((5.22-exp)/exp)*100
+### gives the correct answer (well, much much closer, not exact), even though it is not the same equation. For the rest of the calculations I will be using the non-log regression equation ###
+
+### Perodicticus potto
+pot <- 1.9689*(3.41) - 0.00015
+pot ### estimated MTS 
+((5.24-pot)/pot)*100
+
+### Lepilemur mustelinus
+lep <- 1.9689*(3.76) - 0.00015
+lep ### estimated MTS 
+((6.30-lep)/lep)*100
+
+### Otolemur crassicaudatus
+oto <- 1.9689*(3.72) - 0.00015
+oto ### estimated MTS 
+((6.31-oto)/oto)*100
+
+### Serapia eocaena (fossil taxon)
+ser <- 1.9689*(3.05) - 0.00015
+ser ### estimated MTS 
+((5.24-ser)/ser)*100
+
+### Qatrania sp. (fossil taxon)
+sp <- 1.9689*(2.42) - 0.00015
+sp ### estimated MTS 
+((4.23-sp)/sp)*100
+
+### Cheirogaleus medius ###
+che <- 1.9689*(2.32) - 0.00015
+che ### estimated MTS 
+((4.06-che)/che)*100
+
+###Plesiopithecus teras (fossil)###
+ple <- 1.9689*(3.2) - 0.00015
+ple ### estimated MTS 
+((5.64-ple)/ple)*100
+
+### Varecia variegata 
+var <- 1.9689*(6.78) - 0.00015
+((11.92-var)/var)*100
+
+### Oligopithecus savagei (fossil)
+lig <- 1.9689*(3.51) - 0.00015
+((6.22-lig)/lig)*100
+
+### Allocebus trichotis
+all <- 1.9689*(1.76) - 0.00015
+((3.18-all)/all)*100
+
+### Phaner furcifer
+ph <- 1.9689*(2.55) - 0.00015
+((4.6-ph)/ph)*100
+
+### Eulemur fulvus mayottensis
+eu <- 1.9689*(5.81) - 0.00015
+((10.41-eu)/eu)*100
+
+### Microcebus murinus 
+m <- 1.9689*(1.58) - 0.00015
+((2.92-m)/m)*100
+
+### Wadilemur elegans (fossil)
+w <- 1.9689*(2.28) - 0.00015
+((4.22-w)/w)*100
+
+### Euoticus elegantulus
+uo <- 1.9689*(2.36) - 0.00015
+((4.39-uo)/uo)*100
+
+### Proteopithecus sylviae (fossil)
+pr <- 1.9689*(2.83) - 0.00015
+((5.32-pr)/pr)*100
+
+### Nycticebus coucang
+n <- 1.9689*(3.34) - 0.00015
+((6.28-n)/n)*100
+
+### Eulemur coronatus
+c <- 1.9689*(4.78) - 0.00015
+((9.03-c)/c)*100
+
+### Galago alleni
+g <- 1.9689*(2.8) - 0.00015
+((5.44-g)/g)*100
+
+### Indri indri
+i <- 1.9689*(7.04) - 0.00015
+((13.56-i)/i)*100
+
+### Catopithecus browni (fossil)
+ca <- 1.9689*(3.21) - 0.00015
+((6.3-ca)/ca)*100
+
+### Propothecus verreauxi
+v <- 1.9689*(6.66) - 0.00015
+((13.11-v)/v)*100
+
+### Aframonius diedes (fossil)
+af <- 1.9689*(4.52) - 0.00015
+((9.01-af)/af)*100
+
+###Loris tardigradus
+l <- 1.9689*(2.88) - 0.00015
+((5.78-l)/)*100
+
+### Eulemur fulvus rufus
+fu <- 1.9689*(5.42) - 0.00015
+((10.83-fu)/fu)*100
+
+###Eulemur macaco
+ma <- 1.9689*(5.63) - 0.00015
+((11.27-ma)/ma)*100
+
+### Propithecus diadema
+d <- 1.9689*(6.76) - 0.00015
+((13.63-d)/d)*100
+
+### Lemur catta
+le <- 1.9689*(4.92) - 0.00015
+((10.16-le)/le)*100
+
+### Anchomomys milleri
+an <- 1.9689*(1.97) - 0.00015
+((4.18-an)/an)*100
+
+### Galagoides demidoff
+ga <- 1.9689*(1.94) - 0.00015
+((4.18-ga)/ga)*100
+
+### Euoticus inustus
+euo <- 1.9689*(2.15) - 0.00015
+((4.72-euo)/euo)*100
+
+### Arctocebus calabarensis
+ar <- 1.9689*(3.56) - 0.00015
+((7.79-ar)/ar)*100
+
+### Hapalemur griseus
+ha <- 1.9689*(4.28) - 0.00015
+((9.39-ha)/ha)*100
+
+### Avahi laniger
+va <- 1.9689*(3.84) - 0.00015
+((8.61-va)/va)*100
+
+### Galago senegalensis
+sen <- 1.9689*(2.17) - 0.00015
+((5.34-sen)/sen)*100
+
+
+### Tarsius spectrum
+ta <- 1.9689*(2.27) - 0.00015
+((5.7-ta)/ta)*100
+
+### Hapalemur simus
+hap <- 1.9689*(5.82) - 0.00015
+((14.57-hap)/hap)*100
+
+### Taxon A (from the SDNHM)
+ta <- 1.9689*(2.1) - 0.00015
+((4.13-ta)/ta)*100
+
+### Taxon A was most likely a frugivore based on the prosimian equation
+
+### Taxon B from the SDNHM
+tb <- 1.9689*(2.75) - 0.00015
+((5.01-tb)/tb)*100 ###most likely a frugivore
+
+### Table 5: Platyrrhine ###
+
+### Once again, an example to illustrate the conflicting equations ###
+
+### Cacajao melanocephalus SQ using non-log transformed regression equation:
+a <- (3.97*1.6253)+0.4567
+((5.9-a)/a)*100
+
+b <- (3.97*0.899)+0.689 ### Using the published, ln-transformed equation, a non-reported value is the result ###
+((5.9-b)/b)*100
+### As for the prosimians, I will replicate the table from the publication using the non-ln transformed equation ###
+
+### Chiropotes satanas 
+ci <- 1.6253*(3.64) + 0.4567
+((5.58-ci)/ci)*100
+
+### Saguinus mystax 
+s <- 1.6253*(2.52) + 0.4567
+((4.03-s)/s)*100
+
+### Cebus apella
+ceb <- 1.6253*(4.79) + 0.4567
+((7.71-ceb)/ceb)*100
+
+### Plesiopithecus teras (fossil)
+te <- 1.6253*(3.45) + 0.4567
+((5.75-te)/te)*100
+
+### Cebeulla pygmaea
+py <- 1.6253*(1.78) + 0.4567
+((3.26-py)/py)*100
+
+### Pithecia monachus
+mo <- 1.6253*(4) + 0.4567
+((6.78-mo)/mo)*100
+
+### Qatrania wingi (fossil)
+win <- 1.6253*(2.42) + 0.4567
+((4.3-win)/win)*100
+
+### Callicebus moloch
+mol <- 1.6253*(3.18) + 0.4567
+((5.55-mol)/mol)*100
+
+### Callithric argentata
+arg <- 1.6253*(2.22) + 0.4567
+((4.08-arg)/arg)*100
+
+### Serapia eocaena (fossil)
+fos <- 1.6253*(3.1) + 0.4567
+((5.54-fos)/fos)*100
+
+### Leontopithecus rosalia
+leo <- 1.6253*(3.09) + 0.4567
+((5.62-leo)/leo)*100
+
+### Qatrania sp (fossil)
+qs <- 1.6253*(2.41) + 0.4567
+((4.5-qs)/qs)*100
+
+### Ateles geoffroyi
+at <- 1.6253*(5.26) + 0.4567
+((9.31-at)/at)*100
+
+### Afrotarsius chatrathi (fossil)
+fr <- 1.6253*(2.55) + 0.4567
+((4.97-fr)/fr)*100
+
+### Wadilemur elegans (fossil)
+di <- 1.6253*(2.09) + 0.4567
+((4.16-di)/di)*100
+
+### Saimiri sciureus 
+s <- 1.6253*(2.87) + 0.4567
+((5.54-s)/s)*100
+
+### Proteopithecus sylviae (fossil)
+sy <- 1.6253*(2.98) + 0.4567
+((5.77-sy)/sy)*100
+
+### Anchomomys milleri (fossil)
+mi <- 1.6253*(1.97) + 0.4567
+((4.01-mi)/mi)*100
+
+### Lagothrix lagotricha
+la <- 1.6253*(5.47) + 0.4567
+((10.12-la)/la)*100
+
+### Aotus trivirgatus
+ao <- 1.6253*(3.06) + 0.4567
+((6.16-ao)/ao)*100
+
+### Catopithecus browni (fossil)
+br <- 1.6253*(3.41) + 0.4567
+((6.91-br)/br)*100
+
+### Callimico goeldii
+go <- 1.6253*(2.6) + 0.4567
+((5.48-go)/go)*100
+
+### Alouatta fusca
+al <- 1.6253*(6.7) + 0.4567
+((12.94-al)/al)*100
+
+### Alouatta caraya
+car <- 1.6253*(6.72) + 0.4567
+((13.09-car)/car)*100
+
+### Aframonius diedes (fossil)
+die <- 1.6253*(4.23) + 0.4567
+((8.69-die)/die)*100
+
+### Alouatta palliata
+pa <- 1.6253*(6.92) + 0.4567
+((13.91-pa)/pa)*100
+
+### Brachyteles arachnoides
+bra <- 1.6253*(7.22) + 0.4567
+((15.19-bra)/bra)*100
+
+### My results are not a precise match to table 5, so there must be a descrepancy somewhere in values used, but my equation still produces a more reasonable result compared to the ln-transformed equation. 
+
+
+### References
+### Conroy, G. C. (1987). Problems of body-weight estimation in fossil primates. International Journal of Primatology, 8(2), 115-137.
+### Kay, R. F. (1975). The functional adaptations of primate molar teeth. American Journal of Physical Anthropology, 43(2), 195-215.
+### Kirk, E. C., & Simons, E. L. (2001). Diets of fossil primates from the Fayum Depression of Egypt: a quantitative analysis of molar shearing. Journal of Human Evolution, 40(3), 203-229.
